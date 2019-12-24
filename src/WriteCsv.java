@@ -15,6 +15,7 @@ public class WriteCsv {
 
 
         public void writeToCsv(String log) {
+            //System.out.println(log);
             String[] test = log.split(" endline");
        /*     byte data[] = log.getBytes();
             try (OutputStream out = new BufferedOutputStream(Files.newOutputStream(csvPath, CREATE, APPEND))) {
@@ -33,22 +34,31 @@ public class WriteCsv {
                         BufferedReader csvReader = new BufferedReader(new FileReader(file));
                         System.out.println(test.length);
                         for(String str : test) {
-
-                            str += " endline";
+                            //System.out.println(str);
+                            String tempStr = str;
+                            tempStr += " endline";
                             //System.out.println(str);
                             while ((line = csvReader.readLine()) != null) {
-
-                                if (line.equals(str)) {
+                                //System.out.println("blub");
+                                if (line.equals(tempStr)) {
                                     System.out.println("test");
                                     duplet = true;
+                                    break;
                                 }else{
-                                     tmpLog += str +"\n";
+                                    // tmpLog += str +"\n";
+                                   //  System.out.println(tempStr);
+
+                                  //  csvWrite.write(tempStr);
                                 }
                             }
+                        if(!duplet) {
+                            csvWrite.write(tempStr);
+                            duplet = false;
+                        }
                         }
                         //if(!duplet) {
 
-                            csvWrite.write(tmpLog);
+                            //csvWrite.write(tmpLog);
                             duplet = false;
                        // }else{
 
